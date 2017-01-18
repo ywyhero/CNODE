@@ -22,9 +22,9 @@
             <view class="comment_li" wx:for="{{replyList}}">
                 <view class="comment_head">
                     <view class="comment_name">{{item.author.loginname}}</view>
-                    <view class="comment_ding">
+                    <view class="comment_ding" bindtap="ding" id="{{item.id}}" data-index="{{index}}">
                         <image src="../../images/icon/zanhl.png"></image>
-                        {{item.ups.length}}
+                        {{item.zanNum}}
                     </view>
                     <view class="comment_time">{{item.create_at}}</view>
                 </view>

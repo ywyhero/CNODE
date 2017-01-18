@@ -48,6 +48,7 @@ Page({
                         that.setData({
                             replyList: res.data.data.replies.reverse().map(function (item) {
                                 item.create_at = util.getDateDiff(new Date(item.create_at));
+                                item.zanNum = item.ups.length;
                                 return item;
                             }),
                             hidden: true
@@ -56,5 +57,19 @@ Page({
                 })
             }
         })
+    },
+    ding:function(e){
+        var that = this;
+        var id = e.currentTarget.id;
+        var detail = that.data.replyList;
+        for(var i = 0; i < detail.length; i++){
+            if(id == detail[i].id){
+                detail[i].zanNum = detail[i].zanNum + 1;
+            }
+        }
+        that.setData({
+            replyList: detail
+        })
+
     }
 })
