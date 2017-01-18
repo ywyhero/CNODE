@@ -1,1 +1,33 @@
-<view>1111</view>
+<view class="my_ul">
+    <view class="my_li" style="border-top: 2rpx solid #ddd">
+        <view class="my_li_text">小尾巴</view>
+        <switch class="my_li_switch" type="switch"/>
+    </view>
+    <view class="my_li">
+        <view class="my_li_text">省流量</view>
+        <switch class="my_li_switch" type="switch" checked="true"/>
+    </view>
+    <view class="my_li" style="background: #f5f5f5">
+        <view class="my_li_text">关于</view>
+    </view>
+    <view class="my_li">
+        <view class="my_li_text">当前版本</view>
+        <view class="my_li_text" style="float: right;font-size: 25rpx;color:#ddd ">2.0.1</view>
+    </view>
+    <view class="my_li">
+        <view class="my_li_text">意见反馈</view>
+        <view class="my_li_text" style="float: right;font-size: 25rpx;color:#ddd ">Email</view>
+    </view>
+    <view class="my_li">
+        <view class="my_li_text">评分鼓励</view>
+    </view>
+    <view class="my_li">
+        <view class="my_li_text">关于作者</view>
+    </view>
+    <view class="my_li">
+        <view class="my_li_text">关于CNode社区</view>
+    </view>
+</view>
+
+
+
