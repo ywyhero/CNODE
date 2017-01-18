@@ -1,0 +1,36 @@
+<import src="../../wxParse/wxParse.wxml"/>
+<scroll-view scroll-y="true" style="height: {{winHeight - 31}}px;" scroll-top="{{scrollTop}}">
+    <loading hidden="{{hidden}}">
+        加载中...
+    </loading>
+    <view class="detail_head">
+        <view class="detail_title">{{detailContent.title}}</view>
+        <view class="detail_user">
+            <view class="detail_user_img">
+                <image src="{{detailContent.author.avatar_url}}"></image>
+            </view>
+            <view class="detail_user_name">{{detailContent.author.loginname}}</view>
+        </view>
+        <view class="detail_time">{{detailContent.last_reply_at}}</view>
+    </view>
+    <view class="wxParse">
+        <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+    </view>
+    <view class="comment">
+        <view class="comment_ul">
+
+            <view class="comment_li" wx:for="{{replyList}}">
+                <view class="comment_head">
+                    <view class="comment_name">{{item.author.loginname}}</view>
+                    <view class="comment_ding">
+                        <image src="../../images/icon/zanhl.png"></image>
+                        {{item.ups.length}}
+                    </view>
+                    <view class="comment_time">{{item.create_at}}</view>
+                </view>
+
+                <view class="comment_content">{{item.content}}</view>
+            </view>
+        </view>
+    </view>
+</scroll-view>

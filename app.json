@@ -1,0 +1,36 @@
+{
+  "pages":[
+    "pages/first/index",
+    "pages/my/index",
+    "pages/detail/index"
+  ],
+  "window":{
+    "navigationBarBackgroundColor": "#444444",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "CNODE社区",
+    "backgroundColor": "#fff",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "color": "#ccc",
+    "selectedColor": "#35495e",
+    "borderStyle": "white",
+    "backgroundColor": "#f9f9f9",
+    "list": [
+      {
+        "text": "首页",
+        "pagePath": "pages/first/index",
+        "iconPath": "images/bar/CNode.png",
+        "selectedIconPath": "images/bar/CNodeHL.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/my/index",
+        "iconPath": "images/bar/ME.png",
+        "selectedIconPath": "images/bar/MEHL.png"
+      }
+    ]
+  },
+  "debug": true
+}

@@ -1,0 +1,242 @@
+<view class="cnode_new">
+    <view class="swiper-tab">
+        <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">全部</view>
+        <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">精华</view>
+        <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">分享</view>
+        <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="swichNav">问答</view>
+        <view class="swiper-tab-list {{currentTab==4 ? 'on' : ''}}" data-current="4" bindtap="swichNav">招聘</view>
+    </view>
+    <swiper current="{{currentTab}}" class="swiper-box" style="height:{{winHeight - 31}}px" bindchange="bindChange">
+        <swiper-item>
+            <loading hidden="{{hidden}}">
+                加载中...
+            </loading>
+            <scroll-view scroll-y="true" style="height: {{winHeight - 31}}px;" bindscrolltoupper="refresh" bindscrolltolower="loadMore" scroll-top="{{scrollTop}}">
+
+          <view class="cnode_new_li" wx:for="{{newsList}}">
+              <view class="cnode_new_head">
+                  <view class="cnode_new_img">
+                      <image src="{{item.author.avatar_url}}"></image>
+                  </view>
+                  <view class="cnode_new_head_top">
+                      <view class="cnode_new_user">{{item.author.loginname}}</view>
+                      <view class="cnode_new_time">{{item.last_reply_at}}</view>
+                  </view>
+                  <view class="cnode_new_head_bottom">
+                      <view class="cnode_new_tab" wx:if="{{item.top == true}}">置顶</view>
+                      <view class="cnode_new_tab" wx:elif="{{item.good == true}}">精华</view>
+                      <view class="cnode_new_tab" wx:elif="{{item.tab == 'ask'}}" style="border-color: #999;color: #999;">问答</view>
+                      <view class="cnode_new_tab" wx:elif="{{item.tab == 'share'}}" style="border-color: #999;color: #999;">分享</view>
+                      <view class="cnode_new_tab" wx:elif="{{item.tab == 'job'}}" style="border-color: #999;color: #999;">招聘</view>
+                      <view class="cnode_new_title" data-id="{{item.id}}" bindtap="toDetail">{{item.title}}</view>
+                  </view>
+              </view>
+              <view class="cnode_new_foot">
+                  <view class="cnode_new_comment cnode_new_base">
+                      <view class="cnode_new_comment_img">
+                          <image src="../../images/icon/reply.png"></image>
+                      </view>
+                      <view class="cnode_new_num">{{item.reply_count}}</view>
+                  </view>
+                  <view class="cnode_new_read cnode_new_base">
+                      <view class="cnode_new_read_img">
+                          <image src="../../images/icon/visit.png"></image>
+                      </view>
+                      <view class="cnode_new_num">{{item.visit_count}}</view>
+                  </view>
+                  <view class="cnode_new_share cnode_new_base" style="margin-right: 0;width: 148rpx">
+                      <view class="cnode_new_share_img">
+                          <image src="../../images/icon/type.png"></image>
+                      </view>
+                      <view class="cnode_new_num" style="color: #80bd01;float: right;">分享</view>
+                  </view>
+              </view>
+          </view>
+      </scroll-view>
+        </swiper-item>
+        <swiper-item>
+            <loading hidden="{{hidden}}">
+                加载中...
+            </loading>
+            <scroll-view scroll-y="true" style="height: {{winHeight - 31}}px;" bindscrolltoupper="refresh" bindscrolltolower="loadMore" scroll-top="{{scrollTop}}">
+                <view class="cnode_new_li" wx:for="{{goodList}}">
+                    <view class="cnode_new_head">
+                        <view class="cnode_new_img">
+                            <image src="{{item.author.avatar_url}}"></image>
+                        </view>
+                        <view class="cnode_new_head_top">
+                            <view class="cnode_new_user">{{item.author.loginname}}</view>
+                            <view class="cnode_new_time">{{item.last_reply_at}}</view>
+                        </view>
+                        <view class="cnode_new_head_bottom">
+                            <view class="cnode_new_tab" wx:if="{{item.top == true}}">置顶</view>
+                            <view class="cnode_new_tab" wx:elif="{{item.good == true}}">精华</view>
+                            <view class="cnode_new_tab" wx:elif="{{item.tab == 'ask'}}" style="border-color: #999;color: #999;">问答</view>
+                            <view class="cnode_new_tab" wx:elif="{{item.tab == 'share'}}" style="border-color: #999;color: #999;">分享</view>
+                            <view class="cnode_new_tab" wx:elif="{{item.tab == 'job'}}" style="border-color: #999;color: #999;">招聘</view>
+                            <view class="cnode_new_title" data-id="{{item.id}}" bindtap="toDetail">{{item.title}}</view>
+                        </view>
+                    </view>
+                    <view class="cnode_new_foot">
+                        <view class="cnode_new_comment cnode_new_base">
+                            <view class="cnode_new_comment_img">
+                                <image src="../../images/icon/reply.png"></image>
+                            </view>
+                            <view class="cnode_new_num">{{item.reply_count}}</view>
+                        </view>
+                        <view class="cnode_new_read cnode_new_base">
+                            <view class="cnode_new_read_img">
+                                <image src="../../images/icon/visit.png"></image>
+                            </view>
+                            <view class="cnode_new_num">{{item.visit_count}}</view>
+                        </view>
+                        <view class="cnode_new_share cnode_new_base" style="margin-right: 0;width: 148rpx">
+                            <view class="cnode_new_share_img">
+                                <image src="../../images/icon/type.png"></image>
+                            </view>
+                            <view class="cnode_new_num" style="color: #80bd01;float: right;">分享</view>
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+        </swiper-item>
+        <swiper-item>
+            <loading hidden="{{hidden}}">
+                加载中...
+            </loading>
+            <scroll-view scroll-y="true" style="height: {{winHeight - 31}}px;" bindscrolltoupper="refresh" bindscrolltolower="loadMore" scroll-top="{{scrollTop}}">
+                <view class="cnode_new_li" wx:for="{{shareList}}">
+                    <view class="cnode_new_head">
+                        <view class="cnode_new_img">
+                            <image src="{{item.author.avatar_url}}"></image>
+                        </view>
+                        <view class="cnode_new_head_top">
+                            <view class="cnode_new_user">{{item.author.loginname}}</view>
+                            <view class="cnode_new_time">{{item.last_reply_at}}</view>
+                        </view>
+                        <view class="cnode_new_head_bottom">
+                            <view class="cnode_new_tab" wx:if="{{item.top == true}}">置顶</view>
+                            <view class="cnode_new_tab" wx:elif="{{item.good == true}}">精华</view>
+                            <view class="cnode_new_tab" wx:elif="{{item.tab == 'ask'}}" style="border-color: #999;color: #999;">问答</view>
+                            <view class="cnode_new_tab" wx:elif="{{item.tab == 'share'}}" style="border-color: #999;color: #999;">分享</view>
+                            <view class="cnode_new_tab" wx:elif="{{item.tab == 'job'}}" style="border-color: #999;color: #999;">招聘</view>
+                            <view class="cnode_new_title" data-id="{{item.id}}" bindtap="toDetail">{{item.title}}</view>
+                        </view>
+                    </view>
+                    <view class="cnode_new_foot">
+                        <view class="cnode_new_comment cnode_new_base">
+                            <view class="cnode_new_comment_img">
+                                <image src="../../images/icon/reply.png"></image>
+                            </view>
+                            <view class="cnode_new_num">{{item.reply_count}}</view>
+                        </view>
+                        <view class="cnode_new_read cnode_new_base">
+                            <view class="cnode_new_read_img">
+                                <image src="../../images/icon/visit.png"></image>
+                            </view>
+                            <view class="cnode_new_num">{{item.visit_count}}</view>
+                        </view>
+                        <view class="cnode_new_share cnode_new_base" style="margin-right: 0;width: 148rpx">
+                            <view class="cnode_new_share_img">
+                                <image src="../../images/icon/type.png"></image>
+                            </view>
+                            <view class="cnode_new_num" style="color: #80bd01;float: right;">分享</view>
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+        </swiper-item>
+        <swiper-item>
+            <loading hidden="{{hidden}}">
+                加载中...
+            </loading>
+            <scroll-view scroll-y="true" style="height: {{winHeight - 31}}px;" bindscrolltoupper="refresh" bindscrolltolower="loadMore" scroll-top="{{scrollTop}}">
+                <view class="cnode_new_li" wx:for="{{askList}}">
+                    <view class="cnode_new_head">
+                        <view class="cnode_new_img">
+                            <image src="{{item.author.avatar_url}}"></image>
+                        </view>
+                        <view class="cnode_new_head_top">
+                            <view class="cnode_new_user">{{item.author.loginname}}</view>
+                            <view class="cnode_new_time">{{item.last_reply_at}}</view>
+                        </view>
+                        <view class="cnode_new_head_bottom">
+                            <view class="cnode_new_tab" wx:if="{{item.top == true}}">置顶</view>
+                            <view class="cnode_new_tab" wx:elif="{{item.good == true}}">精华</view>
+                            <view class="cnode_new_tab" wx:elif="{{item.tab == 'ask'}}" style="border-color: #999;color: #999;">问答</view>
+                            <view class="cnode_new_tab" wx:elif="{{item.tab == 'share'}}" style="border-color: #999;color: #999;">分享</view>
+                            <view class="cnode_new_tab" wx:elif="{{item.tab == 'job'}}" style="border-color: #999;color: #999;">招聘</view>
+                            <view class="cnode_new_title" data-id="{{item.id}}" bindtap="toDetail">{{item.title}}</view>
+                        </view>
+                    </view>
+                    <view class="cnode_new_foot">
+                        <view class="cnode_new_comment cnode_new_base">
+                            <view class="cnode_new_comment_img">
+                                <image src="../../images/icon/reply.png"></image>
+                            </view>
+                            <view class="cnode_new_num">{{item.reply_count}}</view>
+                        </view>
+                        <view class="cnode_new_read cnode_new_base">
+                            <view class="cnode_new_read_img">
+                                <image src="../../images/icon/visit.png"></image>
+                            </view>
+                            <view class="cnode_new_num">{{item.visit_count}}</view>
+                        </view>
+                        <view class="cnode_new_share cnode_new_base" style="margin-right: 0;width: 148rpx">
+                            <view class="cnode_new_share_img">
+                                <image src="../../images/icon/type.png"></image>
+                            </view>
+                            <view class="cnode_new_num" style="color: #80bd01;float: right;">分享</view>
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+        </swiper-item>
+        <swiper-item>
+            <loading hidden="{{hidden}}">
+                加载中...
+            </loading>
+            <scroll-view scroll-y="true" style="height: {{winHeight - 31}}px;" bindscrolltoupper="refresh" bindscrolltolower="loadMore" scroll-top="{{scrollTop}}">
+                <view class="cnode_new_li" wx:for="{{jobList}}">
+                    <view class="cnode_new_head">
+                        <view class="cnode_new_img">
+                            <image src="{{item.author.avatar_url}}"></image>
+                        </view>
+                        <view class="cnode_new_head_top">
+                            <view class="cnode_new_user">{{item.author.loginname}}</view>
+                            <view class="cnode_new_time">{{item.last_reply_at}}</view>
+                        </view>
+                        <view class="cnode_new_head_bottom">
+                            <view class="cnode_new_tab" wx:if="{{item.top == true}}">置顶</view>
+                            <view class="cnode_new_tab" wx:elif="{{item.good == true}}">精华</view>
+                            <view class="cnode_new_tab" wx:elif="{{item.tab == 'ask'}}" style="border-color: #999;color: #999;">问答</view>
+                            <view class="cnode_new_tab" wx:elif="{{item.tab == 'share'}}" style="border-color: #999;color: #999;">分享</view>
+                            <view class="cnode_new_tab" wx:elif="{{item.tab == 'job'}}" style="border-color: #999;color: #999;">招聘</view>
+                            <view class="cnode_new_title" data-id="{{item.id}}" bindtap="toDetail">{{item.title}}</view>
+                        </view>
+                    </view>
+                    <view class="cnode_new_foot">
+                        <view class="cnode_new_comment cnode_new_base">
+                            <view class="cnode_new_comment_img">
+                                <image src="../../images/icon/reply.png"></image>
+                            </view>
+                            <view class="cnode_new_num">{{item.reply_count}}</view>
+                        </view>
+                        <view class="cnode_new_read cnode_new_base">
+                            <view class="cnode_new_read_img">
+                                <image src="../../images/icon/visit.png"></image>
+                            </view>
+                            <view class="cnode_new_num">{{item.visit_count}}</view>
+                        </view>
+                        <view class="cnode_new_share cnode_new_base" style="margin-right: 0;width: 148rpx">
+                            <view class="cnode_new_share_img">
+                                <image src="../../images/icon/type.png"></image>
+                            </view>
+                            <view class="cnode_new_num" style="color: #80bd01;float: right;">分享</view>
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+        </swiper-item>
+    </swiper>
+</view>
